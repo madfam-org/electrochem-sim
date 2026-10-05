@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useEffect, useState } from 'react'
-import { Group, Mesh, BufferGeometry, Float32BufferAttribute } from 'three'
+import { Group, Mesh, MeshPhysicalMaterial, BufferGeometry, Float32BufferAttribute } from 'three'
 import { useFrame } from '@react-three/fiber'
 import { Box, Cylinder, Sphere } from '@react-three/drei'
 import { useSimulationData } from '@/hooks/useSimulationData'
@@ -49,11 +49,14 @@ export function ElectrochemicalCell({ runId, position }: ElectrochemicalCellProp
     if (electrolyteRef.current && data?.concentration) {
       const concentration = data.concentration[0] || 1
       const normalizedConc = concentration / 100
-      electrolyteRef.current.material.color.setRGB(
-        0.3 + normalizedConc * 0.2,
-        0.5 + normalizedConc * 0.3,
-        0.8 - normalizedConc * 0.3
-      )
+      const material = electrolyteRef.current.material
+      if (material instanceof MeshPhysicalMaterial) {
+        material.color.setRGB(
+          0.3 + normalizedConc * 0.2,
+          0.5 + normalizedConc * 0.3,
+          0.8 - normalizedConc * 0.3
+        )
+      }
     }
   })
   
