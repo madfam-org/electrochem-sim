@@ -296,6 +296,6 @@ make test      # run all tests
 
 ## Contact
 
-* **Product/Engineering:** [engineering@galvana.com](mailto:engineering@galvana.com)
-* **Security:** [security@galvana.com](mailto:security@galvana.com) (PGP key TBD)
-* **Sales/Partnerships:** [hello@galvana.com](mailto:hello@galvana.com)
+* **Product/Engineering:** [support@madfam.io](mailto:support@madfam.io)
+* **Security:** [security@madfam.io](mailto:security@madfam.io)
+* **Sales/Partnerships:** [hola@madfam.io](mailto:hola@madfam.io)
