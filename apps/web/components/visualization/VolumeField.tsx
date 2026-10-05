@@ -2,7 +2,7 @@
 
 import { useRef, useMemo, useEffect } from 'react'
 import * as THREE from 'three'
-import { useFrame, useThree, extend } from '@react-three/fiber'
+import { useFrame, useThree, extend, type MaterialNode } from '@react-three/fiber'
 import { shaderMaterial } from '@react-three/drei'
 import { useSimulationData } from '@/hooks/useSimulationData'
 
@@ -103,6 +103,15 @@ const VolumeShaderMaterial = shaderMaterial(
 )
 
 extend({ VolumeShaderMaterial })
+
+// JSX typing for the element registered by extend(): a ShaderMaterial whose uniforms
+// (threshold, opacity, steps, …) are set as props.
+type VolumeShaderMaterialImpl = THREE.ShaderMaterial & { [uniform: string]: unknown }
+declare module '@react-three/fiber' {
+  interface ThreeElements {
+    volumeShaderMaterial: MaterialNode<VolumeShaderMaterialImpl, typeof VolumeShaderMaterial>
+  }
+}
 
 interface VolumeFieldProps {
   runId: string

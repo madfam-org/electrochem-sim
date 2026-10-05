@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { Group } from 'three'
+import { Group, Mesh } from 'three'
 import { useFrame } from '@react-three/fiber'
 import { Box, Cylinder, Text } from '@react-three/drei'
 import { Html } from '@react-three/drei'
@@ -19,7 +19,7 @@ export function Instruments() {
 function Potentiostat({ position }: { position: [number, number, number] }) {
   const [isOn, setIsOn] = useState(false)
   const [current, setCurrent] = useState(0)
-  const displayRef = useRef<Group>(null)
+  const displayRef = useRef<Mesh>(null)
   
   useFrame((state) => {
     if (isOn) {
