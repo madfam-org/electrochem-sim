@@ -183,7 +183,7 @@ export function useWebSocket({
         // Keep keyframes + recent frames
         const keyframes = newFrames.filter(f => f.is_keyframe)
         const recentFrames = newFrames.slice(-Math.floor(maxFramesBuffer / 2))
-        const merged = [...new Set([...keyframes, ...recentFrames])]
+        const merged = Array.from(new Set([...keyframes, ...recentFrames]))
         return merged.slice(-maxFramesBuffer)
       }
       return newFrames

@@ -4,11 +4,15 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls, PerspectiveCamera, Environment, Stats } from '@react-three/drei'
 import { EffectComposer, Bloom, SSAO } from '@react-three/postprocessing'
 import { Suspense } from 'react'
+import { Color } from 'three'
 import { Laboratory } from './Laboratory'
 import { ElectrochemicalCell } from './ElectrochemicalCell'
 import { VolumeField } from './VolumeField'
 import { Instruments } from './Instruments'
 import { LoadingScreen } from './LoadingScreen'
+
+// SSAO's `color` prop takes a THREE.Color, not a CSS string.
+const SSAO_COLOR = new Color('black')
 
 interface LabCanvasProps {
   runId?: string
@@ -96,7 +100,12 @@ export function LabCanvas({ runId, showStats = false, quality = 'medium' }: LabC
                 radius={0.5}
                 intensity={quality === 'high' ? 50 : 30}
                 luminanceInfluence={0.1}
-                color="black"
+                color={SSAO_COLOR}
+                // World-unit cutoffs (postprocessing's documented values); the typings require them.
+                worldDistanceThreshold={20}
+                worldDistanceFalloff={5}
+                worldProximityThreshold={0.4}
+                worldProximityFalloff={0.1}
               />
               <Bloom
                 intensity={0.5}
