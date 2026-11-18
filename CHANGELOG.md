@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Documentation
+- `ROADMAP.md`: where the simulator stands, four proposed scenarios and what "in good shape" would mean. Nothing is scheduled.
+
 ### Planned
 - Additional potentiostat driver integrations
 - MOOSE engine support
